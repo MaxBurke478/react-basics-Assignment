@@ -9,6 +9,8 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
+import { Link as RouterLink } from "react-router";
+import Link from "@mui/material/Link";
 
 
 const root = {
@@ -21,7 +23,7 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
+const MovieDetails = ({ movie, credits }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -74,6 +76,28 @@ const [drawerOpen, setDrawerOpen] = useState(false);
           </li>
         ))}
       </Paper>
+      
+      <Paper component="ul" sx={{ ...root }}>
+        <li>
+          <Chip label="Cast" sx={{ ...chip }} color="primary" />
+        </li>
+
+        {credits?.cast?.slice(0, 10).map((actor) => (
+          <li key={actor.id} style={{ margin: "8px" }}>
+            <Link
+              component={RouterLink}
+              to={`/actors/${actor.id}`}
+              underline="hover"
+            >
+              {actor.name}
+            </Link>
+            <Typography variant="caption" display="block">
+              {actor.character}
+            </Typography>
+          </li>
+        ))}
+      </Paper>
+
       
       <Fab
         color="secondary"
