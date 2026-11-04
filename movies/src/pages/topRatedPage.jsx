@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import PageTemplate from '../components/templateMovieListPage';
 import { getTopRatedMovies } from "../api/tmdb-api";
-import AddToPlaylistIcon from "../components/cardIcons/addToPlaylist";
-
+import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
 const TopRatedPage = () => {
   const [movies, setMovies] = useState([]);
@@ -12,13 +11,17 @@ const TopRatedPage = () => {
       setMovies(movies);
     });
   }, []);
+
+    const favorites = movies.filter((m) => m.favorite);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  const addToFavorites = (movieId) => true;
   
   return (
     <PageTemplate
       title='Top Rated Movies'
       movies={movies}
       action={(movie) => {
-        return <AddToPlaylistIcon movie={movie} />;
+         return <AddToFavoritesIcon movie={movie} />;
       }}
     />
   );

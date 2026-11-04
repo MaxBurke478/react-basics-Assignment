@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PageTemplate from '../components/templateMovieListPage';
 import { getPopularMovies } from "../api/tmdb-api";
-import AddToPlaylistIcon from "../components/cardIcons/addToPlaylist";
+import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
 
 const PopularPage = () => {
@@ -13,12 +13,15 @@ const PopularPage = () => {
     });
   }, []);
   
+    const favorites = movies.filter((m) => m.favorite);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  const addToFavorites = (movieId) => true;
   return (
     <PageTemplate
       title='Popular Movies'
       movies={movies}
       action={(movie) => {
-        return <AddToPlaylistIcon movie={movie} />;
+        return <AddToFavoritesIcon movie={movie} />;
       }}
     />
   );
