@@ -55,7 +55,12 @@ export default function FilterMoviesCard(props) {
   return (
     <Card 
       sx={{
-        backgroundColor: "rgb(204, 204, 0)"
+        backgroundColor: "rgb(0, 0, 0)",
+        color: "rgb(255, 255, 255)",
+        borderRadius: 3,
+        boxShadow: 4,
+        maxWidth: 450,
+        margin: "auto"
       }} 
       variant="outlined">
       <CardContent>
@@ -90,12 +95,22 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+        <FormControl sx={{ ...formControl }}>
+  <InputLabel id="sort-label">Sort By</InputLabel>
+  <Select
+    labelId="sort-label"
+    id="sort-select"
+    value={props.sortBy}
+    label="Sort By"
+    onChange={(e) => handleChange(e, "sortBy", e.target.value)}
+  >
+    <MenuItem value="popularity">Most Popular</MenuItem>
+    <MenuItem value="rating">Highest Rated</MenuItem>
+    <MenuItem value="newest">Newest Releases</MenuItem>
+    <MenuItem value="oldest">Oldest Releases</MenuItem>
+  </Select>
+</FormControl>
       </CardContent>
-      <CardMedia
-        sx={{ height: 300 }}
-        image={img}
-        title="Filter"
-      />
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
