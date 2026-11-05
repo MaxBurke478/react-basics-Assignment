@@ -31,7 +31,12 @@ export default function MovieCard({ movie, action }) {
   };
   
   return (
-    <Card>
+    <Card sx={{
+        borderRadius: 3,
+        boxShadow: 3,
+        overflow: "hidden",
+        transition: "0.3s",
+      }}>
       <CardHeader
         avatar={
           movie.favorite ? (
@@ -41,39 +46,42 @@ export default function MovieCard({ movie, action }) {
           ) : null
         }
         title={
-          <Typography variant="h5" component="p">
+          <Typography variant="h6" component="p" fontWeight="bold" sx={{
+              minHeight: 48,
+              display: "flex",
+              alignItems: "center"
+            }}>
             {movie.title}{" "}
           </Typography>
         }
+        sx={{ pb: 1 }}
       />
       <CardMedia
-        sx={{ height: 500 }}
+        sx={{ height: 400, objectFit: "cover" }}
         image={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
             : img
         }
       />
-      <CardContent>
-        <Grid container>
-          <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
+      <CardContent sx={{py:2}}>
+        <Grid container alignItems="center" spacing={1}>
+          <Grid size={{xs: 7}}>
+            <Typography variant="body2" color="text.secondary" >
+              <CalendarIcon fontSize="small" sx={{ verticalAlign: "middle", mr: 0.5 }} />
               {movie.release_date}
             </Typography>
           </Grid>
-          <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
-              <StarRateIcon fontSize="small" />
+          <Grid size={{xs: 5}}>
+            <Typography variant="body2" fontWeight="bold" sx={{ textAlign: "right" }}>
+              <StarRateIcon fontSize="small" sx ={{color:"#FFFF00",verticalAlign: "middle", mr: 0.5 }} />
               {"  "} {movie.vote_average}{" "}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions disableSpacing>
-        
+      <CardActions sx={{ px: 2,pb: 2,justifyContent: "space-between"}}>
         {action(movie)}
-        
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
