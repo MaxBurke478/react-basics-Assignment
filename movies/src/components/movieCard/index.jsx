@@ -36,6 +36,11 @@ export default function MovieCard({ movie, action }) {
         boxShadow: 3,
         overflow: "hidden",
         transition: "0.3s",
+        backgroundColor: "hsl(244, 95%, 29%)",
+        "&:hover": {
+          boxShadow: 6,
+          transform: "scale(1.03)",
+        },
       }}>
       <CardHeader
         avatar={
@@ -46,10 +51,12 @@ export default function MovieCard({ movie, action }) {
           ) : null
         }
         title={
-          <Typography variant="h6" component="p" fontWeight="bold" sx={{
+          <Typography variant="h5" component="p" fontWeight="bold" sx={{
               minHeight: 48,
               display: "flex",
-              alignItems: "center"
+              alignItems: "center",
+              WebkitTextStroke: ".8px black",
+              color: "white"
             }}>
             {movie.title}{" "}
           </Typography>

@@ -55,7 +55,7 @@ export default function FilterMoviesCard(props) {
   return (
     <Card 
       sx={{
-        backgroundColor: "rgb(156, 10, 144)",
+        backgroundColor: "rgb(13, 17, 129)",
         color: "rgb(255, 255, 255)",
         borderRadius: 3,
         boxShadow: 4,

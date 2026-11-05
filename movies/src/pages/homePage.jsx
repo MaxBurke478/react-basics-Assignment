@@ -31,7 +31,7 @@ const HomePage = (props) => {
       movies={movies}
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />;
-      }}
+      }}  
     />
   );
 };

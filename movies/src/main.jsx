@@ -13,6 +13,7 @@ import AddMovieReviewPage from './pages/addMovieReviewPage'
 import TopRatedPage from "./pages/topRatedPage";
 import ActorPage from "./pages/actorPage";
 import PopularPage from "./pages/popularPage";
+import Box from "@mui/material/Box";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,6 +30,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <SiteHeader />
+        <Box sx={{ minHeight: "100vh", backgroundColor: "#242424"}}>
         <MoviesContextProvider>
           <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
@@ -43,6 +45,7 @@ const App = () => {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </MoviesContextProvider>
+        </Box>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
