@@ -28,11 +28,11 @@ const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3"sx={{color: "white"}}>
         Overview
       </Typography>
 
-      <Typography variant="h6" component="p">
+      <Typography variant="h6" component="p" sx={{color: "white"}}>
         {movie.overview}
       </Typography>
 

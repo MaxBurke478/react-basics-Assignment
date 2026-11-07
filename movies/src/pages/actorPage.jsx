@@ -5,6 +5,7 @@ import { getActor, getActorMovies } from "../api/tmdb-api";
 import PageTemplate from "../components/templateMovieListPage";
 import Spinner from "../components/spinner";
 import AddToPlaylistIcon from "../components/cardIcons/addToPlaylist";
+import Typography from "@mui/material/Typography";
 
 const ActorPage = () => {
   const { id } = useParams();
@@ -29,8 +30,13 @@ const ActorPage = () => {
 
   return (
     <>
-      <h1>{actor.name}</h1>
-      <p>{actor.biography}</p>
+      <Typography variant="h4" sx={{ color: "white" }}>
+        {actor.name}
+      </Typography>
+
+      <Typography variant="h7" sx={{ color: "white" }}>
+        {actor.biography}
+      </Typography>
       <PageTemplate
         title={`Movies featuring ${actor.name}`}
         movies={credits.cast}
