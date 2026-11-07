@@ -3,21 +3,24 @@ import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
+import Pagination from "@mui/material/Pagination";
 
 function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
   const [sortBy, setSortBy] = useState("popularity");
+  const [currentPage, setCurrentPage] = useState(1);
+  const moviesPerPage = 20;
 
-  let displayedMovies = movies
+  let filteredMovies = movies
     .filter((m) => {
       return m.title.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
     })
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     });
-displayedMovies = [...displayedMovies].sort((a, b) => {  //so it doesnt mess up original order of le movies array
+filteredMovies = [...filteredMovies].sort((a, b) => {  //so it doesnt mess up original order of le movies array
   if (sortBy === "popularity") {
     return b.popularity - a.popularity;
   }
@@ -32,7 +35,14 @@ displayedMovies = [...displayedMovies].sort((a, b) => {  //so it doesnt mess up 
   }
   return 0;
 });
+const totalPages = Math.ceil(filteredMovies.length / moviesPerPage);// Calculate the total number of pages based on the filtered movies and movies per page
+const startIndex = (currentPage - 1) * moviesPerPage;  // Calculate the starting index for the current page
+const displayedMovies = filteredMovies.slice( // slice the filtered movies array to get only the movies for the current page
+  startIndex,
+  startIndex + moviesPerPage
+);   
 const handleChange = (type, value) => {
+  setCurrentPage(1); 
   if (type === "name") {
     setNameFilter(value);
   }
@@ -63,6 +73,22 @@ const handleChange = (type, value) => {
           />
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>
+        {totalPages > 1 && (
+          <Grid 
+           size={12}
+           sx={{display: "flex", justifyContent: "center", padding: 3}}
+          >
+            <Pagination
+              count={totalPages}
+              page={currentPage}
+              onChange={(event, value) => setCurrentPage(value)}
+              color="primary" 
+              size="large"
+              shape="rounded"
+              
+            />
+      </Grid>
+        )}
       </Grid>
     </Grid>
   );

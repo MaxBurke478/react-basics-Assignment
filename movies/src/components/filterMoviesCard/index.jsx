@@ -82,7 +82,6 @@ export default function FilterMoviesCard(props) {
           <Select
             labelId="genre-label"
             id="genre-select"
-            defaultValue=""
             value={props.genreFilter}
             onChange={handleGenreChange}
           >
