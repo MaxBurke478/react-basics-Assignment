@@ -85,6 +85,7 @@ const handleChange = (type, value) => {
               color="primary" 
               size="large"
               shape="rounded"
+              sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderRadius: 2, padding: 1}}
               
             />
       </Grid>
