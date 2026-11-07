@@ -12,6 +12,7 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import TopRatedPage from "./pages/topRatedPage";
 import ActorPage from "./pages/actorPage";
+import TrendingPage from "./pages/trendingMoviesPage";
 import PopularPage from "./pages/popularPage";
 import Box from "@mui/material/Box";
 
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/movies/toprated" element={<TopRatedPage />} />
+            <Route path="/movies/trending" element={<TrendingPage />} />
             <Route path="/actors/:id" element={<ActorPage />} />
             <Route path="/movies/popular" element={<PopularPage />} />
             <Route path="/" element={<HomePage />} />
