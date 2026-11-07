@@ -1,17 +1,16 @@
-export const getMovies = () => {
-  return fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
-  ).then((response) => {
-    if (!response.ok) {
-      return response.json().then((error) => {
+export const getMovies = async () => {
+  let allMovies=[];
+  for (let page = 1; page <= 5; page++) {
+    const response = await fetch(
+    `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${page}`
+  );
+  if (!response.ok) {
         throw new Error(error.status_message || "Something went wrong");
-      });
-    }
-    return response.json();
-  })
-  .catch((error) => {
-      throw error
-  });
+      };
+    const data = await response.json();
+    allMovies=allMovies.concat(data.results);
+  }
+  return{ results: allMovies };
 };
 
 export const getUpcomingMovies = () => {
